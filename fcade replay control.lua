@@ -25,6 +25,7 @@ local pause = savestate.create("pause")
 
 local p1toggle = false -- if p1 is taking control
 local p1inputsset = false -- if p1 is already set up
+local p1state = savestate.create("p1state")
 local p1inputs = joypad.get() -- table of player one's inputs
 
 for i, _ in pairs(p1inputs) do
@@ -98,6 +99,10 @@ local inputParse = function()
 	joypad.set(clearinputs) -- common case
 	
 	if (fc%SAVESTATE_INTERVAL==0 and sstable[fc]==nil) then -- we've reached another multiple of the interval, save a state
+		if (p1toggle==true) then -- this will break our replay
+			p1toggle = false
+			savestate.load(p1state)
+		end
 		sstable[fc] = savestate.create(fc)
 		savestate.save(sstable[fc])
 	end
@@ -143,6 +148,11 @@ local inputParse = function()
 	
 	if (kb[P1_CONTROL_KEY] and not kbprev[P1_CONTROL_KEY]) then
 		p1toggle = not p1toggle
+		if (p1toggle==true) then 
+			savestate.save(p1state)
+		else
+			savestate.load(p1state)
+		end
 	end
 	
 	if (pausetoggle==true) then savestate.load(pause) end
