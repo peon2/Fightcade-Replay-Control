@@ -19,4 +19,4 @@ FORWARD_KEY: Key used to jump forward a savestate, default B
 PAUSE_KEY: Key used to pause a replay, default N
 P1_CONTROL_KEY: Key used to enable p1 control, default M
 
-If I can clean this up/more fightcade support comes in I'll add this functionality to (my spectating script)[https://github.com/peon2/fbneo-spectating]
+If I can clean this up/more fightcade support comes in I'll add this functionality to [my spectating script](https://github.com/peon2/fbneo-spectating)
