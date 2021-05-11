@@ -200,4 +200,5 @@ emu.registerexit(function() -- remove all the savestates
 			os.remove(i)
 		end
 		os.remove("pause")
+		os.remove("p1state")
 	end)
